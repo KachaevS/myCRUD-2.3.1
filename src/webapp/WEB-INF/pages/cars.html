@@ -1,12 +1,17 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>cars</title>
+    <title>CARS</title>
 </head>
 <body>
-
-CARS
-
+<h1>List of Cars</h1>
+<ul>
+    <li th:each="car : ${cars}">
+        <p>Owner: <span th:text="${car.owner}"></span></p>
+        <p>Id: <span th:text="${car.id}"></span></p>
+        <p>Place: <span th:text="${car.place}"></span></p>
+    </li>
+</ul>
 </body>
 </html>
