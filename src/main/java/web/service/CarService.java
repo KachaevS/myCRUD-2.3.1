@@ -18,7 +18,7 @@ public class CarService {
         cars.add(new Car("Sam", 3335, 5));
     }
 
-    public List<Car> getAllCars (){
+    public List<Car> getAllCars () {
         return cars;
     }
 
