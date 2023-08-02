@@ -8,7 +8,7 @@ import java.util.List;
 
 @Component
 public class CarService {
-    private List<Car> cars = new ArrayList<>();
+    private final List<Car> cars = new ArrayList<>();
 
     {
         cars.add(new Car("Kate", 1351, 1));

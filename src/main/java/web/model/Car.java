@@ -18,7 +18,7 @@ public class Car {
         return owner;
     }
 
-    public void setOwner(String model) {
+    public void setOwner(String owner) {
         this.owner = owner;
     }
 
