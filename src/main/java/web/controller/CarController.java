@@ -23,14 +23,7 @@ public class CarController {
 
     @GetMapping
     public String showCars (@RequestParam(name="count", required = false) Integer count, Model model) {
-        List<Car> allCars = cs.getAllCars();
-
-        if (count != null && count < allCars.size()) {
-            List<Car> displayedCars = allCars.subList(0, count);
-            model.addAttribute("cars", displayedCars);
-        } else {
-            model.addAttribute("cars", allCars);
-        }
+        model.addAttribute("cars", cs.getCars(count));
         return "cars";
     }
 

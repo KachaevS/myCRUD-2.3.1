@@ -1,12 +1,12 @@
 package web.service;
 
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import web.model.Car;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Service
 public class CarService {
     private final List<Car> cars = new ArrayList<>();
 
@@ -18,15 +18,13 @@ public class CarService {
         cars.add(new Car("Sam", 3335, 5));
     }
 
-    public List<Car> getAllCars () {
-        return cars;
+    public List<Car> getCars(Integer count) {
+        if (count != null && count < cars.size()) {
+            return cars.stream().limit(count).toList();
+        } else {
+            return cars;
+        }
     }
-
-
-
-
-
-
 }
 
 
