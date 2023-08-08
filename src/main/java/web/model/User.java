@@ -1,18 +1,23 @@
 package web.model;
 
+import jakarta.persistence.*;
 
+@Entity
+@Table (name = "usersmvc")
 public class User {
+
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "yearOfBirth")
     private int yearOfBirth;
 
     public User() {
-    }
-
-    public User(int id, String name, int yearOfBirth) {
-        this.id = id;
-        this.name = name;
-        this.yearOfBirth = yearOfBirth;
     }
 
     public int getId() {

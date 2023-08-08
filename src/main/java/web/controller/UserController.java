@@ -33,15 +33,9 @@ public class UserController {
     @GetMapping(value = "/edit/{id}")
     public ModelAndView editPage(@PathVariable("id") int id) {
 //        User user = userService.getById(id);
-
-        List <User> users = userService.allUsers();
-        User user = users.get(id);
-
-        System.out.println(user.getId() + "=====================");
-
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
-        modelAndView.addObject("user", user);
+        modelAndView.addObject("user", userService.getById(id));
         return modelAndView;
     }
 
@@ -50,7 +44,6 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         userService.edit(user);
-        System.out.println("USER EDITED");
         return modelAndView;
     }
 
@@ -71,7 +64,6 @@ public class UserController {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
         User user = userService.getById(id);
-        System.out.println("USER ID IS HERE " + user.getId());
         userService.delete(user);
         return modelAndView;
     }
