@@ -1,54 +1,55 @@
 package web.dao;
 
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.EntityManagerFactory;
+import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import web.model.User;
+
 import java.util.List;
 
 @Repository
 public class userDaoImpl implements userDao {
 
-    private SessionFactory sessionFactory;
+
+    private final EntityManagerFactory emf;
+    private final EntityManager em;
 
     @Autowired
-    public userDaoImpl(SessionFactory sessionFactory) {
-        this.sessionFactory = sessionFactory;
+    public userDaoImpl(EntityManagerFactory emf, EntityManager em) {
+        this.emf = emf;
+        this.em = em;
     }
 
     @Override
-    @SuppressWarnings("unchecked")
     public List<User> allUsers() {
-        Session session = sessionFactory.getCurrentSession();
-        return session.createQuery("from User").list();
+        String query = "SELECT u FROM User u";
+        return em.createQuery(query, User.class).getResultList();
     }
 
     @Override
     public void add(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.persist(user);
-
+        em.persist(user);
     }
 
     @Override
     public void delete(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.delete(user);
+        em.remove(em.contains(user) ? user : em.merge(user));
 
     }
 
     @Override
     public void edit(User user) {
-        Session session = sessionFactory.getCurrentSession();
-        session.update(user);
+        em.merge(user);
 
     }
 
     @Override
     public User getById(int id) {
-        Session session = sessionFactory.getCurrentSession();
-        return session.get(User.class, id);
+        return em.find(User.class, id);
     }
 
 }
