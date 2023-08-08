@@ -2,10 +2,7 @@ package web.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
-import jakarta.persistence.PersistenceContext;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
@@ -15,12 +12,10 @@ import java.util.List;
 public class userDaoImpl implements userDao {
 
 
-    private final EntityManagerFactory emf;
     private final EntityManager em;
 
     @Autowired
-    public userDaoImpl(EntityManagerFactory emf, EntityManager em) {
-        this.emf = emf;
+    public userDaoImpl(EntityManager em) {
         this.em = em;
     }
 

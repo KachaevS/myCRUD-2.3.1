@@ -22,17 +22,14 @@ public class UserController {
 
     @GetMapping(value = "/")
     public ModelAndView allUsers() {
-        List <User> users = userService.allUsers();
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("usersPage");
-		modelAndView.addObject("users", users);
-        System.out.println(users.size() + " ======= SIZE");
+		modelAndView.addObject("users", userService.allUsers());
         return modelAndView;
     }
 
     @GetMapping(value = "/edit/{id}")
     public ModelAndView editPage(@PathVariable("id") int id) {
-//        User user = userService.getById(id);
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("editPage");
         modelAndView.addObject("user", userService.getById(id));
@@ -63,8 +60,7 @@ public class UserController {
     public ModelAndView deleteUser(@PathVariable("id") int id){
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("redirect:/");
-        User user = userService.getById(id);
-        userService.delete(user);
+        userService.delete(userService.getById(id));
         return modelAndView;
     }
 
