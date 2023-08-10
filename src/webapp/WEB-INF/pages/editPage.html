@@ -8,17 +8,17 @@
 
 <form th:method="POST" th:action="@{/edit}" th:object="${user}">
     <input type="hidden" name="id" th:value="${user.id}"/>
-    <label for="name">Enter name</label>
+    <label for="name">Введи имя:</label>
     <input type="text" th:field="*{name}" id="name" />
     <br>
-    <label for="born">Enter year of birth</label>
+    <label for="born">Введи год рождения:</label>
     <input type="text" th:field="*{yearOfBirth}" id="born" />
     <input type="submit" value="Create"/>
 </form>
 
 
 
-editing:
+Редактируется:
 <span th:text="${user.name}"></span>
 
 

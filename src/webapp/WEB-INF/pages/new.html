@@ -7,9 +7,9 @@
 <body>
 
 <form th:method="POST" th:action="@{/new}" th:object="${user}">
-    <label for="name">Enter name</label>
+    <label for="name">Введи имя:</label>
     <input type="text" th:field="*{name}" id="name" />
-    <label for="born">Enter year of birth</label>
+    <label for="born">Введи год рождения:</label>
     <input type="text" th:field="*{yearOfBirth}" id="born" />
     <input type="submit" value="Create"/>
 </form>
